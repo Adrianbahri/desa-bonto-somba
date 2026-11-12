@@ -189,31 +189,20 @@ add_action( 'init', function() {
 		'menu_icon'    => 'dashicons-carrot',
 		'supports'     => [ 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields' ],
 	] );
-
-	register_post_type( 'perangkat', [
-		'labels' => [
-			'name'          => 'Struktur Perangkat Desa',
-			'singular_name' => 'Perangkat Desa',
-			'menu_name'     => 'Perangkat Desa',
-			'add_new_item'  => 'Tambah Perangkat Desa',
-			'edit_item'     => 'Edit Perangkat Desa',
-		],
-		'public'       => true,
-		'show_in_rest' => true,
-		'menu_icon'    => 'dashicons-groups',
-		'supports'     => [ 'title', 'editor', 'thumbnail', 'page-attributes', 'custom-fields' ],
-	] );
 } );
 
 /**
- * 3. Meta Boxes di WP-Admin untuk Post, Wisata, Potensi, dan Perangkat Desa
+ * 3. Meta Boxes di WP-Admin untuk Post, Wisata, dan Potensi Desa
  */
 add_action( 'add_meta_boxes', function() {
 	add_meta_box( 'bs_post_meta', 'Pengaturan Gambar Portal Desa', function( $post ) {
 		$img = get_post_meta( $post->ID, 'featured_image_url', true );
 		?>
 		<p><label><strong>URL Gambar Artikel (atau pilih Featured Image di kanan):</strong></label></p>
-		<input type="text" name="bs_featured_image_url" value="<?php echo esc_attr( $img ); ?>" style="width:100%;" placeholder="https://..." />
+		<div style="display:flex; gap:10px; align-items:center;">
+			<input type="text" id="bs_featured_image_url" name="bs_featured_image_url" value="<?php echo esc_attr( $img ); ?>" style="width:78%;" placeholder="https://..." />
+			<button type="button" class="button bs-meta-upload-btn" data-target="bs_featured_image_url">Pilih / Upload Gambar</button>
+		</div>
 		<?php
 	}, 'post', 'normal', 'high' );
 
@@ -227,7 +216,15 @@ add_action( 'add_meta_boxes', function() {
 			<tr><th>Kategori Wisata</th><td><input type="text" name="bs_kategori_wisata" value="<?php echo esc_attr( $kat ); ?>" class="regular-text" placeholder="Ekowisata Alam" /></td></tr>
 			<tr><th>Lokasi Dusun</th><td><input type="text" name="bs_lokasi" value="<?php echo esc_attr( $lok ); ?>" class="regular-text" placeholder="Dusun Bonto-Bonto" /></td></tr>
 			<tr><th>Highlight Singkat</th><td><input type="text" name="bs_highlight" value="<?php echo esc_attr( $hig ); ?>" class="regular-text" placeholder="Area Kemah & Hutan Pinus" /></td></tr>
-			<tr><th>URL Gambar</th><td><input type="text" name="bs_featured_image_url" value="<?php echo esc_attr( $img ); ?>" style="width:100%;" /></td></tr>
+			<tr>
+				<th>URL Gambar</th>
+				<td>
+					<div style="display:flex; gap:10px; align-items:center;">
+						<input type="text" id="bs_featured_image_url" name="bs_featured_image_url" value="<?php echo esc_attr( $img ); ?>" style="width:78%;" />
+						<button type="button" class="button bs-meta-upload-btn" data-target="bs_featured_image_url">Pilih / Upload Gambar</button>
+					</div>
+				</td>
+			</tr>
 		</table>
 		<?php
 	}, 'wisata', 'normal', 'high' );
@@ -242,24 +239,51 @@ add_action( 'add_meta_boxes', function() {
 			<tr><th>Kategori Komoditas</th><td><input type="text" name="bs_kategori_potensi" value="<?php echo esc_attr( $kat ); ?>" class="regular-text" placeholder="Hasil Hutan Bukan Kayu" /></td></tr>
 			<tr><th>Dusun Penghasil</th><td><input type="text" name="bs_dusun" value="<?php echo esc_attr( $dusun ); ?>" class="regular-text" placeholder="Dusun Cindakko" /></td></tr>
 			<tr><th>Badge Label</th><td><input type="text" name="bs_badge" value="<?php echo esc_attr( $badge ); ?>" class="regular-text" placeholder="Komoditas Utama" /></td></tr>
-			<tr><th>URL Gambar</th><td><input type="text" name="bs_featured_image_url" value="<?php echo esc_attr( $img ); ?>" style="width:100%;" /></td></tr>
+			<tr>
+				<th>URL Gambar</th>
+				<td>
+					<div style="display:flex; gap:10px; align-items:center;">
+						<input type="text" id="bs_featured_image_url" name="bs_featured_image_url" value="<?php echo esc_attr( $img ); ?>" style="width:78%;" />
+						<button type="button" class="button bs-meta-upload-btn" data-target="bs_featured_image_url">Pilih / Upload Gambar</button>
+					</div>
+				</td>
+			</tr>
 		</table>
 		<?php
 	}, 'potensi', 'normal', 'high' );
-
-	add_meta_box( 'bs_perangkat_meta', 'Detail Jabatan & Tugas Perangkat Desa', function( $post ) {
-		$jabatan = get_post_meta( $post->ID, 'jabatan', true );
-		$tugas   = get_post_meta( $post->ID, 'tugas', true );
-		$img     = get_post_meta( $post->ID, 'featured_image_url', true );
-		?>
-		<table class="form-table">
-			<tr><th>Jabatan (Badge)</th><td><input type="text" name="bs_jabatan" value="<?php echo esc_attr( $jabatan ); ?>" class="regular-text" placeholder="Kepala Desa / Sekretariat Desa / Pelaksana Kewilayahan" /></td></tr>
-			<tr><th>Deskripsi Tugas Pokok</th><td><textarea name="bs_tugas" rows="3" style="width:100%;"><?php echo esc_textarea( $tugas ); ?></textarea></td></tr>
-			<tr><th>URL Foto Perangkat (Opsional)</th><td><input type="text" name="bs_featured_image_url" value="<?php echo esc_attr( $img ); ?>" style="width:100%;" placeholder="https://..." /></td></tr>
-		</table>
-		<?php
-	}, 'perangkat', 'normal', 'high' );
 } );
+
+add_action( 'admin_footer-post.php', 'bonto_somba_meta_upload_script' );
+add_action( 'admin_footer-post-new.php', 'bonto_somba_meta_upload_script' );
+function bonto_somba_meta_upload_script() {
+	?>
+	<script>
+	jQuery(document).ready(function($){
+		$(document).on('click', '.bs-meta-upload-btn', function(e){
+			e.preventDefault();
+			var targetId = $(this).data('target');
+			var frame = wp.media({
+				title: 'Pilih atau Upload Gambar',
+				button: { text: 'Gunakan Gambar Ini' },
+				multiple: false
+			});
+			frame.on('select', function(){
+				var attachment = frame.state().get('selection').first().toJSON();
+				var $input = $('#' + targetId);
+				$input.val(attachment.url);
+				var $preview = $input.closest('td, .bs-struktur-item').find('img').first();
+				if ($preview.length) {
+					$preview.attr('src', attachment.url);
+				} else {
+					$input.parent().after('<img src="' + attachment.url + '" style="margin-top:10px; max-height:110px; border-radius:8px; border:2px solid #098A42; display:block;" />');
+				}
+			});
+			frame.open();
+		});
+	});
+	</script>
+	<?php
+}
 
 add_action( 'save_post', function( $post_id ) {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -303,16 +327,15 @@ add_action( 'rest_api_init', function() {
 	];
 
 	foreach ( $meta_fields as $field ) {
-		register_rest_field( [ 'post', 'wisata', 'potensi', 'perangkat' ], $field, [
+		register_rest_field( [ 'post', 'wisata', 'potensi' ], $field, [
 			'get_callback'    => function( $object ) use ( $field ) {
-				$val = get_post_meta( $object['id'], $field, true );
-				if ( 'featured_image_url' === $field && empty( $val ) ) {
+				if ( 'featured_image_url' === $field ) {
 					$thumb = get_the_post_thumbnail_url( $object['id'], 'full' );
 					if ( $thumb ) {
 						return $thumb;
 					}
 				}
-				return $val;
+				return get_post_meta( $object['id'], $field, true );
 			},
 			'update_callback' => function( $value, $object ) use ( $field ) {
 				return update_post_meta( $object->ID, $field, sanitize_textarea_field( $value ) );
@@ -333,31 +356,9 @@ add_action( 'rest_api_init', function() {
 	register_rest_route( 'bonto-somba/v1', '/settings', [
 		'methods'             => 'GET',
 		'callback'            => function() {
-			$perangkat_posts = get_posts( [
-				'post_type'      => 'perangkat',
-				'posts_per_page' => 20,
-				'post_status'    => 'publish',
-				'orderby'        => [ 'menu_order' => 'ASC', 'ID' => 'ASC' ],
-			] );
-
-			$perangkat_list = [];
-			foreach ( $perangkat_posts as $p ) {
-				$foto = get_post_meta( $p->ID, 'featured_image_url', true );
-				if ( ! $foto ) {
-					$foto = get_the_post_thumbnail_url( $p->ID, 'medium' ) ?: '';
-				}
-				$perangkat_list[] = [
-					'id'      => $p->ID,
-					'nama'    => $p->post_title,
-					'jabatan' => get_post_meta( $p->ID, 'jabatan', true ) ?: 'Perangkat Desa',
-					'tugas'   => get_post_meta( $p->ID, 'tugas', true ) ?: wp_strip_all_tags( $p->post_content ),
-					'foto'    => $foto,
-				];
-			}
-
 			return rest_ensure_response( [
 				'settings'  => bonto_somba_get_settings(),
-				'perangkat' => $perangkat_list,
+				'perangkat' => [],
 			] );
 		},
 		'permission_callback' => '__return_true',
@@ -380,7 +381,7 @@ add_action( 'admin_menu', function() {
 } );
 
 add_action( 'admin_enqueue_scripts', function( $hook ) {
-	if ( 'toplevel_page_bonto-somba-portal' === $hook ) {
+	if ( in_array( $hook, [ 'toplevel_page_bonto-somba-portal', 'post.php', 'post-new.php' ], true ) ) {
 		wp_enqueue_media();
 		wp_enqueue_editor();
 	}
@@ -478,19 +479,22 @@ function bonto_somba_render_admin_page() {
 	$s = bonto_somba_get_settings();
 	?>
 	<div class="wrap" style="max-width: 1080px;">
-		<div style="background: linear-gradient(135deg, #10C960 0%, #098A42 52%, #065227 100%); color: #fff; padding: 24px 28px; border-radius: 12px; margin: 16px 0 24px; box-shadow: 0 8px 24px rgba(6,82,39,0.18);">
-			<h1 style="color: #fff; margin: 0 0 6px; font-size: 24px; font-weight: 700;">Pengaturan Portal Resmi Desa Bonto Somba</h1>
-			<p style="margin: 0; opacity: 0.92; font-size: 13.5px;">
-				Kelola seluruh tampilan website: <strong>Gambar Hero</strong>, <strong>Gambar Wilayah Desa</strong>, <strong>Sambutan &amp; Foto Kepala Desa</strong>, <strong>Identitas Desa</strong>, <strong>3 Dusun</strong>, dan <strong>Batas Wilayah</strong>. Untuk mengedit daftar anggota <strong>Struktur Perangkat Desa</strong>, gunakan menu <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=perangkat' ) ); ?>" style="color:#fff;text-decoration:underline;font-weight:700;">Perangkat Desa</a> di sebelah kiri.
-			</p>
-		</div>
-
-		<?php if ( $updated ) : ?>
-			<div class="notice notice-success is-dismissible"><p><strong>Berhasil!</strong> Seluruh perubahan informasi &amp; gambar portal Desa Bonto Somba telah disimpan dan langsung aktif di website.</p></div>
-		<?php endif; ?>
-
 		<form method="post">
 			<?php wp_nonce_field( 'bonto_somba_save_settings', 'bonto_somba_save_nonce' ); ?>
+
+			<div style="background: linear-gradient(135deg, #10C960 0%, #098A42 52%, #065227 100%); color: #fff; padding: 24px 28px; border-radius: 12px; margin: 16px 0 24px; box-shadow: 0 8px 24px rgba(6,82,39,0.18); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; position: sticky; top: 38px; z-index: 90;">
+				<div style="max-width: 720px;">
+					<h1 style="color: #fff; margin: 0 0 6px; font-size: 22px; font-weight: 700;">Pengaturan Portal Resmi Desa Bonto Somba</h1>
+					<p style="margin: 0; opacity: 0.92; font-size: 13px;">
+						Kelola seluruh tampilan website: <strong>Gambar Hero</strong>, <strong>Gambar Wilayah Desa</strong>, <strong>Sambutan &amp; Foto Kepala Desa</strong>, <strong>Bagan Struktur Organisasi</strong>, <strong>Identitas Desa</strong>, <strong>3 Dusun</strong>, dan <strong>Batas Wilayah</strong>.
+					</p>
+				</div>
+				<button type="submit" class="button button-hero" style="background:#fff; color:#065227; border:none; font-weight:700; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">Simpan Semua Pengaturan</button>
+			</div>
+
+			<?php if ( $updated ) : ?>
+				<div class="notice notice-success is-dismissible"><p><strong>Berhasil!</strong> Seluruh perubahan informasi &amp; gambar portal Desa Bonto Somba telah disimpan dan langsung aktif di website.</p></div>
+			<?php endif; ?>
 
 			<!-- 1. GAMBAR HERO & GAMBAR WILAYAH DESA -->
 			<div style="background:#fff; padding:22px 26px; border-radius:10px; border:1px solid #dcdcde; margin-bottom:22px;">
@@ -814,7 +818,14 @@ function bonto_somba_render_admin_page() {
 			});
 			frame.on('select', function(){
 				var attachment = frame.state().get('selection').first().toJSON();
-				$('#' + targetId).val(attachment.url);
+				var $input = $('#' + targetId);
+				$input.val(attachment.url);
+				var $preview = $input.closest('td, .bs-struktur-item').find('img').first();
+				if ($preview.length) {
+					$preview.attr('src', attachment.url);
+				} else {
+					$input.parent().after('<img src="' + attachment.url + '" style="margin-top:10px; max-height:110px; border-radius:8px; border:2px solid #098A42; display:block;" />');
+				}
 			});
 			frame.open();
 		});

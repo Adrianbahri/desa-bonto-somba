@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { ExternalLink, Compass, Users, MapPin, BookOpen, Quote, Network } from 'lucide-react';
 import { PageBanner } from '../components/PageBanner';
-import type { PortalSettings, PerangkatDesa } from '../types/index.ts';
+import type { PortalSettings } from '../types/index.ts';
 
 interface InfoDesaProps {
   settings: PortalSettings;
-  perangkat: PerangkatDesa[];
 }
 
-export const InfoDesa: React.FC<InfoDesaProps> = ({ settings, perangkat }) => {
+export const InfoDesa: React.FC<InfoDesaProps> = ({ settings }) => {
   const [selectedStrukturIdx, setSelectedStrukturIdx] = useState<number>(0);
 
   const greetingParagraphs = (settings.kadesGreetingBody || '')
@@ -202,45 +201,6 @@ export const InfoDesa: React.FC<InfoDesaProps> = ({ settings, perangkat }) => {
                   />
                 </div>
               </div>
-            </div>
-          )}
-
-          {/* Daftar Ringkas Jabatan Perangkat Desa (jika ada di CPT Perangkat) */}
-          {perangkat.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {perangkat.map((p, idx) => {
-                const isKades = idx === 0;
-                return (
-                  <div
-                    key={p.id || idx}
-                    className={`bg-white rounded-xl p-6 shadow-[0_10px_30px_rgba(15,46,34,0.06)] border flex flex-col justify-between transition-all hover:-translate-y-0.5 ${
-                      isKades ? 'border-emerald-500/40 ring-1 ring-emerald-500/20' : 'border-stone-100'
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center gap-3 mb-3">
-                        <span
-                          className="bg-terracotta text-[10px] font-semibold px-3.5 py-1 rounded-full text-white shadow-xs"
-                        >
-                          {p.jabatan}
-                        </span>
-                        <div className="flex-1 h-[1.5px] bg-terracotta/40" />
-                      </div>
-                      <div className="flex items-center gap-3">
-                        {p.foto && (
-                          <img
-                            src={p.foto}
-                            alt={p.nama}
-                            className="w-11 h-11 rounded-full object-cover border border-emerald-500/30 shrink-0"
-                          />
-                        )}
-                        <h3 className="font-bold text-base text-navy">{p.nama}</h3>
-                      </div>
-                      <p className="text-xs text-navy/70 mt-2 leading-relaxed">{p.tugas}</p>
-                    </div>
-                  </div>
-                );
-              })}
             </div>
           )}
         </section>

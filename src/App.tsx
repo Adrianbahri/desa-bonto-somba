@@ -11,14 +11,12 @@ import {
   MOCK_WISATA,
   MOCK_POTENSI,
   DEFAULT_PORTAL_SETTINGS,
-  PERANGKAT_DESA,
 } from './data/mockData';
 import type {
   PostItem,
   WisataItem,
   PotensiItem,
   PortalSettings,
-  PerangkatDesa,
 } from './types/index.ts';
 
 export const App: React.FC = () => {
@@ -27,7 +25,6 @@ export const App: React.FC = () => {
   const [wisata, setWisata] = useState<WisataItem[]>(MOCK_WISATA);
   const [potensi, setPotensi] = useState<PotensiItem[]>(MOCK_POTENSI);
   const [settings, setSettings] = useState<PortalSettings>(DEFAULT_PORTAL_SETTINGS);
-  const [perangkat, setPerangkat] = useState<PerangkatDesa[]>(PERANGKAT_DESA);
   const [isFromWP, setIsFromWP] = useState<boolean>(false);
 
   useEffect(() => {
@@ -40,7 +37,6 @@ export const App: React.FC = () => {
       ]);
 
       setSettings(portalConfig.settings);
-      setPerangkat(portalConfig.perangkat);
       setPosts(postResult.items);
       setWisata(fetchedWisata);
       setPotensi(fetchedPotensi);
@@ -70,7 +66,7 @@ export const App: React.FC = () => {
           />
         )}
         {activeTab === 'info' && (
-          <InfoDesa settings={settings} perangkat={perangkat} />
+          <InfoDesa settings={settings} />
         )}
         {activeTab === 'berita' && (
           <BeritaKabar
