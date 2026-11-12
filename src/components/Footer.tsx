@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, ExternalLink } from 'lucide-react';
 import type { PortalSettings } from '../types/index.ts';
 
 interface FooterProps {
@@ -8,6 +8,14 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ settings }) => {
+  const mapHref =
+    settings.mapsUrl ||
+    'https://www.google.com/maps/place/Bonto+Somba,+Tompobulu,+Maros+Regency,+South+Sulawesi';
+  const embedSrc =
+    settings.mapsUrl && settings.mapsUrl.includes('/maps/embed')
+      ? settings.mapsUrl
+      : 'https://maps.google.com/maps?q=Bonto+Somba,+Tompobulu,+Maros+Regency,+South+Sulawesi&hl=id&z=12&output=embed';
+
   return (
     <footer className="w-full bg-white text-navy border-t border-stone-200/80">
       <div className="max-w-6xl mx-auto px-6 sm:px-10 py-10">
@@ -65,57 +73,28 @@ export const Footer: React.FC<FooterProps> = ({ settings }) => {
             </p>
           </div>
 
-          {/* Col 4: Regional Mini-Map Graphic (3 cols) */}
+          {/* Col 4: Real Interactive Google Map of Desa Bonto Somba (3 cols) */}
           <div className="md:col-span-3 relative flex justify-end">
-            <a
-              href={settings.mapsUrl || 'https://www.google.com/maps/search/Bonto+Somba+Tompobulu+Maros'}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Buka Lokasi Desa di Google Maps"
-              className="relative w-full max-w-[230px] h-28 bg-ochre-cream/70 rounded-xl overflow-hidden border border-ochre/30 flex items-center justify-center p-3 group hover:border-emerald-500/50 transition-all"
-            >
-              <svg
-                viewBox="0 0 240 110"
-                className="w-full h-full"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+            <div className="relative w-full max-w-[260px] h-32 rounded-xl overflow-hidden border border-emerald-500/30 shadow-xs bg-stone-100 group">
+              <iframe
+                title="Peta Lokasi Desa Bonto Somba"
+                src={embedSrc}
+                className="w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+              <a
+                href={mapHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Buka di Google Maps"
+                className="absolute bottom-1.5 right-1.5 inline-flex items-center gap-1 bg-terracotta text-white text-[10px] font-semibold px-2.5 py-1 rounded-full shadow-sm opacity-95 hover:opacity-100 transition-opacity"
               >
-                <defs>
-                  <linearGradient id="footerMapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#10C960" />
-                    <stop offset="55%" stopColor="#098A42" />
-                    <stop offset="100%" stopColor="#065227" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M15,85 C35,65 55,40 90,30 C125,20 165,15 215,28 C225,45 230,75 210,95 C175,105 120,102 70,98 C35,95 10,92 15,85 Z"
-                  fill="url(#footerMapGrad)"
-                  stroke="#02260D"
-                  strokeWidth="1"
-                />
-                <circle cx="85" cy="52" r="2.5" fill="#FFFFFF" />
-                <text x="65" y="45" fill="#FFFFFF" fontSize="7" fontWeight="700">
-                  MAROS
-                </text>
-
-                <circle cx="58" cy="78" r="2.5" fill="#FFFFFF" />
-                <text x="35" y="90" fill="#FFFFFF" fontSize="6.5" fontWeight="600">
-                  MAKASSAR
-                </text>
-
-                <circle cx="178" cy="68" r="2" fill="#FFFFFF" opacity="0.8" />
-                <text x="165" y="80" fill="#FFFFFF" fontSize="6" fontWeight="600" opacity="0.85">
-                  TOMBOLO PAO
-                </text>
-
-                <circle cx="132" cy="56" r="6" fill="#FFFFFF" />
-                <circle cx="132" cy="56" r="2.5" fill="#00B84C" />
-                <text x="72" y="69" fill="#FFFFFF" fontSize="8" fontWeight="800">
-                  BONTO SOMBA
-                </text>
-              </svg>
-              <MapPin className="w-4 h-4 text-terracotta absolute top-2.5 right-2.5 opacity-80 group-hover:scale-110 transition-transform" />
-            </a>
+                <span>Buka Maps</span>
+                <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
