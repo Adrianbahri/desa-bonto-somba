@@ -141,9 +141,9 @@ export const Beranda: React.FC<BerandaProps> = ({
               <button
                 onClick={() => onNavigate(settings.heroSearchTarget || 'berita')}
                 title="Cari Informasi / Berita Desa"
-                className="cursor-pointer w-8 h-8 rounded-full bg-terracotta hover:bg-terracotta-hover text-white flex items-center justify-center shadow-md transition-transform hover:scale-105"
+                className="cursor-pointer w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-terracotta hover:bg-terracotta-hover text-white flex items-center justify-center shadow-md transition-transform hover:scale-105 active:scale-95 touch-manipulation"
               >
-                <Search className="w-3.5 h-3.5" />
+                <Search className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
               </button>
               <a
                 href={
@@ -152,9 +152,9 @@ export const Beranda: React.FC<BerandaProps> = ({
                     : `mailto:${settings.contactEmail || 'pemdes@bontosomba.desa.id'}`
                 }
                 title={`Email: ${settings.contactEmail || 'pemdes@bontosomba.desa.id'}`}
-                className="cursor-pointer w-8 h-8 rounded-full bg-terracotta hover:bg-terracotta-hover text-white flex items-center justify-center shadow-md transition-transform hover:scale-105"
+                className="cursor-pointer w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-terracotta hover:bg-terracotta-hover text-white flex items-center justify-center shadow-md transition-transform hover:scale-105 active:scale-95 touch-manipulation"
               >
-                <Mail className="w-3.5 h-3.5" />
+                <Mail className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
               </a>
               <a
                 href={
@@ -163,18 +163,18 @@ export const Beranda: React.FC<BerandaProps> = ({
                     : `tel:${(settings.contactPhone || '081241009056').replace(/\s+/g, '')}`
                 }
                 title={`Telepon / WA: ${settings.contactPhone || '0812-4100-9056'}`}
-                className="cursor-pointer w-8 h-8 rounded-full bg-terracotta hover:bg-terracotta-hover text-white flex items-center justify-center shadow-md transition-transform hover:scale-105"
+                className="cursor-pointer w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-terracotta hover:bg-terracotta-hover text-white flex items-center justify-center shadow-md transition-transform hover:scale-105 active:scale-95 touch-manipulation"
               >
-                <Phone className="w-3.5 h-3.5" />
+                <Phone className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
               </a>
               <a
                 href={settings.mapsUrl || 'https://www.google.com/maps/search/Bonto+Somba+Tompobulu+Maros'}
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Lokasi Kantor & Wilayah Desa di Google Maps"
-                className="cursor-pointer w-8 h-8 rounded-full bg-terracotta hover:bg-terracotta-hover text-white flex items-center justify-center shadow-md transition-transform hover:scale-105"
+                className="cursor-pointer w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-terracotta hover:bg-terracotta-hover text-white flex items-center justify-center shadow-md transition-transform hover:scale-105 active:scale-95 touch-manipulation"
               >
-                <MapPin className="w-3.5 h-3.5" />
+                <MapPin className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
               </a>
             </div>
           </div>
@@ -206,28 +206,28 @@ export const Beranda: React.FC<BerandaProps> = ({
         </div>
 
         {/* 5 Circular White Icon Badges Sitting Along the Curve */}
-        <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-8 -mt-16 sm:-mt-20">
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-6 sm:gap-4 justify-items-center">
+        <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-8 -mt-14 sm:-mt-20">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4 justify-items-center">
             {quickCircles.map((item, idx) => {
               const IconComponent = item.icon;
               return (
                 <button
                   key={idx}
                   onClick={() => onNavigate(item.target)}
-                  className={`cursor-pointer group flex flex-col items-center text-center focus:outline-none ${
+                  className={`cursor-pointer group flex flex-col items-center text-center focus:outline-none touch-manipulation active:scale-95 transition-transform ${
                     idx === 4 ? 'col-span-2 sm:col-span-1' : ''
                   }`}
                 >
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white shadow-[0_8px_28px_rgba(26,46,68,0.1)] border border-stone-100 flex items-center justify-center group-hover:-translate-y-1 transition-all duration-200">
+                  <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-white shadow-[0_8px_24px_rgba(26,46,68,0.1)] border border-stone-100 flex items-center justify-center group-hover:-translate-y-1 transition-all duration-200">
                     <div className="relative">
                       <IconComponent
-                        className="w-8 h-8 sm:w-9 sm:h-9 text-navy group-hover:text-terracotta transition-colors"
+                        className="w-7 h-7 sm:w-9 sm:h-9 text-navy group-hover:text-terracotta transition-colors"
                         strokeWidth={1.5}
                       />
                       <span className="w-2 h-2 rounded-full bg-terracotta absolute -top-0.5 -right-0.5" />
                     </div>
                   </div>
-                  <span className="mt-3 text-xs font-bold text-navy group-hover:text-terracotta transition-colors">
+                  <span className="mt-2 sm:mt-3 text-[11px] sm:text-xs font-bold text-navy group-hover:text-terracotta transition-colors max-w-[120px] leading-tight">
                     {item.label}
                   </span>
                 </button>
@@ -293,7 +293,7 @@ export const Beranda: React.FC<BerandaProps> = ({
                   <span className="w-4 h-4 rounded-full bg-terracotta text-white flex items-center justify-center">
                     <Plus className="w-2.5 h-2.5" strokeWidth={3} />
                   </span>
-                  <span>Lihat Struktur Perangkat Desa</span>
+                  <span>Lihat Struktur Organisasi Desa</span>
                 </button>
               </div>
             </div>
@@ -501,9 +501,9 @@ export const Beranda: React.FC<BerandaProps> = ({
               <div className="pt-3">
                 <button
                   onClick={() => onNavigate('info')}
-                  className="cursor-pointer bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider px-6 py-3 rounded-full shadow-lg transition-all hover:scale-105"
+                  className="cursor-pointer bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider px-6 py-3 rounded-full shadow-lg transition-all hover:scale-105 active:scale-95 touch-manipulation"
                 >
-                  LIHAT PETA &amp; PERANGKAT DESA
+                  LIHAT PETA &amp; STRUKTUR DESA
                 </button>
               </div>
             </div>
@@ -512,7 +512,7 @@ export const Beranda: React.FC<BerandaProps> = ({
             <div className="lg:col-span-6 flex justify-center lg:justify-end">
               <div
                 onClick={() => onNavigate('info')}
-                className="cursor-pointer relative w-full max-w-[380px] aspect-square flex items-center justify-center group"
+                className="cursor-pointer relative w-full max-w-[280px] sm:max-w-[380px] aspect-square flex items-center justify-center group"
               >
                 {settings.wilayahMapVectorImage ? (
                   <img

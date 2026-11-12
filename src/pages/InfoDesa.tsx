@@ -30,7 +30,7 @@ export const InfoDesa: React.FC<InfoDesaProps> = ({ settings }) => {
         image={settings.infoBannerImage}
       />
 
-      <div className="max-w-6xl mx-auto px-6 sm:px-10 py-14 space-y-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-10 py-10 sm:py-14 space-y-12 sm:space-y-20">
         {/* 1. Sejarah & Identitas Desa */}
         <section className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="w-64 h-64 rounded-full bg-ochre-cream absolute -left-16 -top-8 pointer-events-none" />
@@ -154,14 +154,14 @@ export const InfoDesa: React.FC<InfoDesaProps> = ({ settings }) => {
             <div className="space-y-6 mb-10">
               {/* Pilihan Tab Judul Struktur (Struktur Desa, Struktur PKK, BPD, dll) */}
               {strukturList.length > 1 && (
-                <div className="flex flex-wrap items-center gap-2.5">
+                <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none sm:flex-wrap">
                   {strukturList.map((item, idx) => {
                     const isActive = idx === selectedStrukturIdx;
                     return (
                       <button
                         key={idx}
                         onClick={() => setSelectedStrukturIdx(idx)}
-                        className={`cursor-pointer px-4 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 ${
+                        className={`cursor-pointer shrink-0 px-4 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 touch-manipulation active:scale-95 ${
                           isActive
                             ? 'bg-terracotta text-white shadow-sm'
                             : 'bg-ochre-cream text-navy hover:bg-emerald-50 border border-emerald-500/20'

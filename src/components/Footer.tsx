@@ -18,7 +18,7 @@ export const Footer: React.FC<FooterProps> = ({ settings }) => {
 
   return (
     <footer className="w-full bg-white text-navy border-t border-stone-200/80">
-      <div className="max-w-6xl mx-auto px-6 sm:px-10 py-10">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 pt-10 pb-28 md:pb-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           {/* Col 1: Official Logo Dark Text Variant (3 cols) */}
           <div className="md:col-span-3 flex flex-col items-start">
@@ -74,8 +74,8 @@ export const Footer: React.FC<FooterProps> = ({ settings }) => {
           </div>
 
           {/* Col 4: Real Interactive Google Map of Desa Bonto Somba (3 cols) */}
-          <div className="md:col-span-3 relative flex justify-end">
-            <div className="relative w-full max-w-[260px] h-32 rounded-xl overflow-hidden border border-emerald-500/30 shadow-xs bg-stone-100 group">
+          <div className="md:col-span-3 relative flex justify-center md:justify-end w-full">
+            <div className="relative w-full max-w-full md:max-w-[260px] h-36 md:h-32 rounded-xl overflow-hidden border border-emerald-500/30 shadow-xs bg-stone-100 group">
               <iframe
                 title="Peta Lokasi Desa Bonto Somba"
                 src={embedSrc}

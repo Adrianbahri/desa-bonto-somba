@@ -57,8 +57,8 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg bg-black/30 text-white hover:bg-black/50 backdrop-blur-xs focus:outline-none"
-          aria-label="Menu"
+          className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-black/35 text-white hover:bg-black/55 active:scale-95 backdrop-blur-md border border-white/20 focus:outline-none cursor-pointer touch-manipulation transition-all"
+          aria-label="Buka Menu Navigasi"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>

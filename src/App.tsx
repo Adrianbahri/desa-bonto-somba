@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { MobileBottomNav } from './components/MobileBottomNav';
 import { Beranda } from './pages/Beranda';
 import { InfoDesa } from './pages/InfoDesa';
 import { BeritaKabar } from './pages/BeritaKabar';
@@ -85,6 +86,7 @@ export const App: React.FC = () => {
       </main>
 
       <Footer settings={settings} onNavigate={handleNavigate} />
+      <MobileBottomNav activeTab={activeTab} setActiveTab={handleNavigate} />
     </div>
   );
 };

@@ -24,9 +24,9 @@ export const PotensiWisata: React.FC<PotensiWisataProps> = ({
         image={settings.potensiBannerImage}
       />
 
-      <div className="max-w-6xl mx-auto px-6 sm:px-10 py-14 space-y-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-10 py-10 sm:py-14 space-y-12 sm:space-y-16">
         {/* Filter Pill Buttons */}
-        <div className="flex justify-center gap-2">
+        <div className="flex flex-wrap justify-center gap-2">
           {[
             { id: 'semua', label: 'SEMUA POTENSI' },
             { id: 'wisata', label: 'DESTINASI WISATA' },
@@ -35,7 +35,7 @@ export const PotensiWisata: React.FC<PotensiWisataProps> = ({
             <button
               key={tab.id}
               onClick={() => setFilter(tab.id as 'semua' | 'wisata' | 'potensi')}
-              className={`cursor-pointer px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors ${
+              className={`cursor-pointer px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all touch-manipulation active:scale-95 ${
                 filter === tab.id
                   ? 'bg-navy text-white shadow-xs'
                   : 'bg-ochre-cream text-navy hover:bg-ochre/40'

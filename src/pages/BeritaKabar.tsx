@@ -32,7 +32,7 @@ export const BeritaKabar: React.FC<BeritaKabarProps> = ({
         image={settings.beritaBannerImage}
       />
 
-      <div className="max-w-6xl mx-auto px-6 sm:px-10 py-14">
+      <div className="max-w-6xl mx-auto px-4 sm:px-10 py-10 sm:py-14">
         {selectedPost ? (
           /* Detail Artikel Penuh (dari Classic Editor WordPress) */
           <article className="max-w-3xl mx-auto bg-white rounded-2xl shadow-[0_12px_36px_rgba(3,43,17,0.08)] border border-stone-100 overflow-hidden">
@@ -99,12 +99,12 @@ export const BeritaKabar: React.FC<BeritaKabarProps> = ({
                 )}
               </div>
 
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none sm:flex-wrap w-full sm:w-auto">
                 {categories.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`cursor-pointer px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-colors ${
+                    className={`cursor-pointer shrink-0 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all touch-manipulation active:scale-95 ${
                       selectedCategory === cat
                         ? 'bg-navy text-white shadow-xs'
                         : 'bg-ochre-cream text-navy hover:bg-ochre/40'
