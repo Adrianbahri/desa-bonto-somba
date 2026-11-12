@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    background-color: #FFFFFF;
+    color: #0B3B21;
+  }
+}
+
+/* Brighter Luxury Emerald Gradient (tanpa ujung hitam pekat: #10C960 -> #098A42 -> #065227) */
+.bg-navy {
+  background-color: #065227 !important;
+  background-image: linear-gradient(135deg, #10C960 0%, #098A42 52%, #065227 100%) !important;
+}
+.hover\:bg-navy-light:hover {
+  background-image: linear-gradient(135deg, #1CE070 0%, #0B9E4C 52%, #086330 100%) !important;
+}
+.text-navy { color: #0B3B21 !important; }
+.text-navy\/90 { color: rgba(11, 59, 33, 0.9) !important; }
+.text-navy\/80 { color: rgba(11, 59, 33, 0.8) !important; }
+.text-navy\/75 { color: rgba(11, 59, 33, 0.75) !important; }
+.text-navy\/70 { color: rgba(11, 59, 33, 0.7) !important; }
+.text-navy\/65 { color: rgba(11, 59, 33, 0.65) !important; }
+.text-navy\/60 { color: rgba(11, 59, 33, 0.6) !important; }
+
+.bg-terracotta {
+  background-color: #098A42 !important;
+  background-image: linear-gradient(135deg, #10C960 0%, #098A42 52%, #065227 100%) !important;
+  color: #FFFFFF !important;
+}
+.hover\:bg-terracotta-hover:hover {
+  background-image: linear-gradient(135deg, #1CE070 0%, #0B9E4C 52%, #086330 100%) !important;
+}
+.text-terracotta { color: #098A42 !important; }
+.group:hover .group-hover\:text-terracotta { color: #10C960 !important; }
+.hover\:text-terracotta:hover { color: #10C960 !important; }
+.bg-terracotta\/50 {
+  background-image: linear-gradient(90deg, rgba(16, 201, 96, 0.6) 0%, rgba(9, 138, 66, 0.18) 100%) !important;
+}
+.bg-terracotta\/40 {
+  background-image: linear-gradient(90deg, rgba(16, 201, 96, 0.5) 0%, rgba(9, 138, 66, 0.12) 100%) !important;
+}
+
+.bg-ochre {
+  background-color: #098A42 !important;
+  background-image: linear-gradient(135deg, #10C960 0%, #098A42 52%, #065227 100%) !important;
+  color: #FFFFFF !important;
+}
+.text-ochre { color: #6EE7B7 !important; }
+.bg-ochre-cream {
+  background-image: radial-gradient(circle at 30% 30%, #E8FBF0 0%, #D1F7E0 60%, rgba(209, 247, 224, 0.15) 100%) !important;
+}
+.hover\:bg-ochre\/40:hover {
+  background-color: #D1F7E0 !important;
+}

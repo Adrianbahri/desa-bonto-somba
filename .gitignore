@@ -1,0 +1,16 @@
+# Dependencies & Build
+node_modules/
+dist/
+.env
+.DS_Store
+__pycache__/
+*.pyc
+*.tsbuildinfo
+
+# WordPress Core & Runtime SQLite Database (keep custom router, config & mu-plugins)
+backend/*
+!backend/router.php
+!backend/wp-config.php
+!backend/wp-content/
+backend/wp-content/*
+!backend/wp-content/mu-plugins/
