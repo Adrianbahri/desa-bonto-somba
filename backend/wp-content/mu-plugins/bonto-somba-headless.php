@@ -44,6 +44,7 @@ function bonto_somba_default_settings() {
 		'heroImage'             => 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=90',
 		'wilayahTitle'          => 'Wilayah Desa',
 		'wilayahImage'          => 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=85',
+		'wilayahMapVectorImage' => '',
 		'wilayahDesc1'          => 'Terletak di dataran tinggi Kecamatan Tompobulu pada ketinggian ± 800 mdpl dengan luas 32,13 km², Desa Bonto Somba memadukan keasrian perbukitan karst Tonasa dan hutan lindung yang terjaga.',
 		'wilayahDesc2'          => 'Melalui peta wilayah dan struktur pemerintahan desa, kenali tiga dusun utama kami—Dusun Bonto-Bonto, Dusun Bara, dan Dusun Cindakko—beserta batas administratif dan layanan sekolah dasar UPTD SDN 246 Bonto-bonto.',
 		'wilayahDesc3'          => 'Cara sederhana dan informatif untuk mengenal lebih dekat tata ruang serta perangkat Desa Bonto Somba.',
@@ -401,7 +402,7 @@ function bonto_somba_render_admin_page() {
 			'contactEmail', 'contactPhone', 'heroSearchTarget',
 			'kadesName', 'kadesPeriod', 'kadesTitle', 'kadesPhoto', 'kadesGreetingTitle', 'kadesGreetingSubtitle',
 			'heroTitle', 'heroSubtitle', 'heroImage',
-			'wilayahTitle', 'wilayahImage',
+			'wilayahTitle', 'wilayahImage', 'wilayahMapVectorImage',
 			'infoBannerTitle', 'infoBannerSubtitle', 'infoBannerImage',
 			'beritaBannerTitle', 'beritaBannerSubtitle', 'beritaBannerImage',
 			'potensiBannerTitle', 'potensiBannerSubtitle', 'potensiBannerImage',
@@ -560,6 +561,18 @@ function bonto_somba_render_admin_page() {
 							</div>
 							<?php if ( ! empty( $s['wilayahImage'] ) ) : ?>
 								<img src="<?php echo esc_url( $s['wilayahImage'] ); ?>" style="margin-top:10px; max-height:110px; border-radius:8px; border:1px solid #ddd;" />
+							<?php endif; ?>
+						</td>
+					</tr>
+					<tr>
+						<th>Gambar Peta Vektor Wilayah Desa (PNG Transparan / SVG di Sebelah Kanan)</th>
+						<td>
+							<div style="display:flex; gap:10px; align-items:center;">
+								<input type="text" id="wilayahMapVectorImage" name="wilayahMapVectorImage" value="<?php echo esc_attr( $s['wilayahMapVectorImage'] ?? '' ); ?>" style="width:75%;" placeholder="Kosongkan untuk memakai peta vektor bawaan, atau upload PNG/SVG peta desa Anda" />
+								<button type="button" class="button bs-upload-btn" data-target="wilayahMapVectorImage">Pilih / Upload PNG Peta</button>
+							</div>
+							<?php if ( ! empty( $s['wilayahMapVectorImage'] ) ) : ?>
+								<img src="<?php echo esc_url( $s['wilayahMapVectorImage'] ); ?>" style="margin-top:10px; max-height:130px; border-radius:8px; border:1px solid #ddd; background:#065227; padding:6px;" />
 							<?php endif; ?>
 						</td>
 					</tr>

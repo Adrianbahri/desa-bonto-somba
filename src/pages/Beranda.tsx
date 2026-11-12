@@ -508,56 +508,64 @@ export const Beranda: React.FC<BerandaProps> = ({
               </div>
             </div>
 
-            {/* Right Territory Map Silhouette Graphic (6 cols) */}
+            {/* Right Territory Map Silhouette Graphic / Custom PNG Vector Map (6 cols) */}
             <div className="lg:col-span-6 flex justify-center lg:justify-end">
               <div
                 onClick={() => onNavigate('info')}
                 className="cursor-pointer relative w-full max-w-[380px] aspect-square flex items-center justify-center group"
               >
-                <svg
-                  viewBox="0 0 360 360"
-                  className="w-full h-full drop-shadow-[0_18px_35px_rgba(0,0,0,0.45)] group-hover:scale-[1.02] transition-transform duration-300"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <linearGradient id="mapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#10C960" />
-                      <stop offset="52%" stopColor="#098A42" />
-                      <stop offset="100%" stopColor="#065227" />
-                    </linearGradient>
-                  </defs>
-                  <path
-                    d="M65,80 L155,40 L190,65 L245,55 L295,95 L285,155 L240,180 L235,245 L210,320 L165,335 L155,280 L175,230 L135,155 L85,115 Z"
-                    fill="url(#mapGrad)"
-                    stroke="#FFFFFF"
-                    strokeWidth="4"
-                    strokeLinejoin="round"
+                {settings.wilayahMapVectorImage ? (
+                  <img
+                    src={settings.wilayahMapVectorImage}
+                    alt={`Peta Vektor ${settings.name}`}
+                    className="w-full h-full object-contain drop-shadow-[0_18px_35px_rgba(0,0,0,0.45)] group-hover:scale-[1.02] transition-transform duration-300"
                   />
-                  <path
-                    d="M145,165 Q195,180 245,175 M195,178 L185,285"
-                    stroke="#86EFAC"
-                    strokeWidth="2"
-                  />
+                ) : (
+                  <svg
+                    viewBox="0 0 360 360"
+                    className="w-full h-full drop-shadow-[0_18px_35px_rgba(0,0,0,0.45)] group-hover:scale-[1.02] transition-transform duration-300"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <defs>
+                      <linearGradient id="mapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#10C960" />
+                        <stop offset="52%" stopColor="#098A42" />
+                        <stop offset="100%" stopColor="#065227" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      d="M65,80 L155,40 L190,65 L245,55 L295,95 L285,155 L240,180 L235,245 L210,320 L165,335 L155,280 L175,230 L135,155 L85,115 Z"
+                      fill="url(#mapGrad)"
+                      stroke="#FFFFFF"
+                      strokeWidth="4"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M145,165 Q195,180 245,175 M195,178 L185,285"
+                      stroke="#86EFAC"
+                      strokeWidth="2"
+                    />
 
-                  <circle cx="195" cy="162" r="9" fill="#00B84C" stroke="#FFFFFF" strokeWidth="2" />
-                  <circle cx="195" cy="162" r="3" fill="#FFFFFF" />
+                    <circle cx="195" cy="162" r="9" fill="#00B84C" stroke="#FFFFFF" strokeWidth="2" />
+                    <circle cx="195" cy="162" r="3" fill="#FFFFFF" />
 
-                  <rect x="130" y="198" width="58" height="16" rx="3" fill="#FFFFFF" />
-                  <text x="159" y="209" textAnchor="middle" fill="#02260D" fontSize="7.5" fontWeight="800">
-                    BONTO-BONTO
-                  </text>
+                    <rect x="130" y="198" width="58" height="16" rx="3" fill="#FFFFFF" />
+                    <text x="159" y="209" textAnchor="middle" fill="#02260D" fontSize="7.5" fontWeight="800">
+                      BONTO-BONTO
+                    </text>
 
-                  <rect x="220" y="188" width="46" height="16" rx="3" fill="#FFFFFF" />
-                  <text x="243" y="199" textAnchor="middle" fill="#02260D" fontSize="7.5" fontWeight="800">
-                    BARA
-                  </text>
+                    <rect x="220" y="188" width="46" height="16" rx="3" fill="#FFFFFF" />
+                    <text x="243" y="199" textAnchor="middle" fill="#02260D" fontSize="7.5" fontWeight="800">
+                      BARA
+                    </text>
 
-                  <rect x="172" y="268" width="52" height="16" rx="3" fill="#FFFFFF" />
-                  <text x="198" y="279" textAnchor="middle" fill="#02260D" fontSize="7.5" fontWeight="800">
-                    CINDAKKO
-                  </text>
-                </svg>
+                    <rect x="172" y="268" width="52" height="16" rx="3" fill="#FFFFFF" />
+                    <text x="198" y="279" textAnchor="middle" fill="#02260D" fontSize="7.5" fontWeight="800">
+                      CINDAKKO
+                    </text>
+                  </svg>
+                )}
               </div>
             </div>
           </div>

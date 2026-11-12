@@ -85,6 +85,7 @@ export interface PortalSettings {
   heroImage: string;
   wilayahTitle: string;
   wilayahImage: string;
+  wilayahMapVectorImage?: string;
   wilayahDesc1: string;
   wilayahDesc2: string;
   wilayahDesc3: string;

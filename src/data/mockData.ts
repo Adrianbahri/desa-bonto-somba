@@ -162,6 +162,7 @@ export const DEFAULT_PORTAL_SETTINGS: PortalSettings = {
   heroImage: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=90",
   wilayahTitle: "Wilayah Desa",
   wilayahImage: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=85",
+  wilayahMapVectorImage: "",
   wilayahDesc1: "Terletak di dataran tinggi Kecamatan Tompobulu pada ketinggian ± 800 mdpl dengan luas 32,13 km², Desa Bonto Somba memadukan keasrian perbukitan karst Tonasa dan hutan lindung yang terjaga.",
   wilayahDesc2: "Melalui peta wilayah dan struktur pemerintahan desa, kenali tiga dusun utama kami—Dusun Bonto-Bonto, Dusun Bara, dan Dusun Cindakko—beserta batas administratif dan layanan sekolah dasar UPTD SDN 246 Bonto-bonto.",
   wilayahDesc3: "Cara sederhana dan informatif untuk mengenal lebih dekat tata ruang serta perangkat Desa Bonto Somba.",
