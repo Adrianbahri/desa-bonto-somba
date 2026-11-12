@@ -776,8 +776,11 @@ function bonto_somba_render_admin_page() {
 						</td>
 					</tr>
 					<tr>
-						<th>Link Google Maps Desa</th>
-						<td><input type="text" name="mapsUrl" value="<?php echo esc_attr( $s['mapsUrl'] ); ?>" style="width:100%;" /></td>
+						<th>Link / Kode Embed Google Maps Desa</th>
+						<td>
+							<input type="text" name="mapsUrl" value="<?php echo esc_attr( $s['mapsUrl'] ); ?>" style="width:100%;" placeholder="https://maps.google.com/... atau kode <iframe src=...> dari Google Maps" />
+							<p style="margin:4px 0 0; font-size:12px; color:#666;">Bisa diisi link Google Maps biasa atau kode iframe sematkan peta (Share &rarr; Embed a map). Jika kosong, sistem otomatis menampilkan peta asli Desa Bonto Somba.</p>
+						</td>
 					</tr>
 				</table>
 			</div>

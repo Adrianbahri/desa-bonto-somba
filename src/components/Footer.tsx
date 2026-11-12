@@ -7,14 +7,30 @@ interface FooterProps {
   onNavigate?: (tab: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ settings }) => {
-  const mapHref =
-    settings.mapsUrl ||
+const DEFAULT_BONTO_SOMBA_EMBED =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63584.05377524959!2d119.865!3d-5.098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbeaf9a73887d15%3A0x6e76dd65d49f6974!2sBonto%20Somba%2C%20Tompobulu%2C%20Maros%20Regency%2C%20South%20Sulawesi!5e0!3m2!1sid!2sid';
+
+function parseMapEmbed(url?: string): string {
+  if (!url) return DEFAULT_BONTO_SOMBA_EMBED;
+  const match = url.match(/src=["']([^"']+)["']/i);
+  if (match) return match[1];
+  if (url.includes('/maps/embed') || url.includes('openstreetmap.org')) return url;
+  return DEFAULT_BONTO_SOMBA_EMBED;
+}
+
+function parseMapHref(url?: string): string {
+  const defaultHref =
     'https://www.google.com/maps/place/Bonto+Somba,+Tompobulu,+Maros+Regency,+South+Sulawesi';
-  const embedSrc =
-    settings.mapsUrl && settings.mapsUrl.includes('/maps/embed')
-      ? settings.mapsUrl
-      : 'https://maps.google.com/maps?q=Bonto+Somba,+Tompobulu,+Maros+Regency,+South+Sulawesi&hl=id&z=12&output=embed';
+  if (!url) return defaultHref;
+  const match = url.match(/src=["']([^"']+)["']/i);
+  const clean = match ? match[1] : url;
+  if (clean.includes('/maps/embed')) return defaultHref;
+  return clean.startsWith('http') ? clean : defaultHref;
+}
+
+export const Footer: React.FC<FooterProps> = ({ settings }) => {
+  const mapHref = parseMapHref(settings.mapsUrl);
+  const embedSrc = parseMapEmbed(settings.mapsUrl);
 
   return (
     <footer className="w-full bg-white text-navy border-t border-stone-200/80">

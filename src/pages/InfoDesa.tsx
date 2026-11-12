@@ -260,7 +260,11 @@ export const InfoDesa: React.FC<InfoDesaProps> = ({ settings }) => {
 
                 <div className="pt-4 border-t border-stone-100">
                   <a
-                    href={settings.mapsUrl}
+                    href={
+                      settings.mapsUrl && !settings.mapsUrl.includes('/maps/embed') && settings.mapsUrl.startsWith('http')
+                        ? settings.mapsUrl
+                        : 'https://www.google.com/maps/place/Bonto+Somba,+Tompobulu,+Maros+Regency,+South+Sulawesi'
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-hover text-white text-[11px] font-bold uppercase tracking-wider px-5 py-3 rounded-full transition-all shadow-sm hover:shadow-md"
